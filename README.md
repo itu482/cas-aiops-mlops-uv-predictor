@@ -192,7 +192,7 @@ The feature store is used as an offline training source and online logging sink,
 
 ## 5. Model Limitations
 
-The model is formulated as a binary classification problem using a fixed threshold (UV ≥ 6). While this simplifies deployment and interpretation, it reduces the granularity of risk estimation and does not capture uncertainty or gradual transitions in UV intensity.
+The model is formulated as a binary classification problem using a hardcoded threshold (UV ≥ 6). While this simplifies deployment and interpretation, it reduces the granularity of risk estimation and does not capture uncertainty or gradual transitions in UV intensity.
 
 Furthermore, model performance was not the primary optimization goal; the focus of this project is the end-to-end MLOps pipeline rather than achieving state-of-the-art predictive accuracy.
 
@@ -202,23 +202,25 @@ The system depends on the Open-Meteo for all its data. This introduces rate limi
 
 ## 7. What is missing for a production-ready system
 
-* Proper fault tolerance (retries - especially in regard to Open-Meteo API, circuit breakers, robust API failure handling)
-* Real observability (metrics dashboards, structured logging, drift monitoring)
-* Data validation layer (schema checks, outlier detection, stronger missing-data strategy)
-* Scalable infrastructure (no single-instance assumption, no Redis/external cache, no orchestration like Kubernetes, 
-tight service coupling, e.g., inference startup depends on training completion)
-* Deployment maturity (no staging/production separation, no model rollback or canary deployments)
-* CI/CD pipeline (no automated integration between code changes, testing, model validation, and deployment; all components are currently started and deployed manually via Docker Compose without release versioning or deployment gates) or continuous training
+* Proper fault tolerance - retries (especially in regard to Open-Meteo API), circuit breakers, robust API failure handling
+* Real observability - metrics dashboards, structured logging, drift monitoring
+* Data validation layer - schema checks, outlier detection, stronger missing-data strategy
+* Scalable infrastructure - no single-instance assumption, no Redis/external cache, no orchestration like Kubernetes, 
+tight service coupling, e.g., inference startup depends on training completion
+* Deployment maturity - no staging/production separation, no model rollback or canary deployments
+* CI/CD pipeline or Continuous Training - no automated integration between code changes, testing, model validation, and deployment; all components are currently started and deployed manually via Docker Compose without release versioning or deployment gates
 * Strong monitoring of model performance over time (no continuous evaluation or alerting)
 * Automated testing (unit, integration, and end-to-end tests for pipelines, feature engineering, and inference APIs)
 * Limited end-to-end model lineage and reproducibility - while the Hopsworks Model Registry provides model versioning and metadata storage, the system does not enforce explicit linkage between a trained model and the exact training dataset snapshot, feature pipeline version, and training code commit, limiting full reproducibility and auditability
+* No model explainability layer
+* Limited use of online feature store for inference
 
 ## 8. What is missing for production-grade ML
 
-* Baseline comparisons (e.g., logistic regression or naive models)
-* Proper time-series validation (e.g., cross-validation instead of single split)
+* Baseline comparisons, e.g., logistic regression or naive models
+* Proper time-series validation, e.g., cross-validation instead of single split
 * Uncertainty estimation and probability calibration
-* More expressive problem formulation (e.g., regression or ordinal prediction instead of binary thresholding)
+* More expressive problem formulation, e.g., regression or ordinal prediction instead of binary thresholding
 * Ablation studies to quantify feature importance and contribution
 * Larger and more diverse dataset (longer time range, more seasonal coverage)
 * More advanced temporal/spatial models beyond feature engineering + Random Forest 
