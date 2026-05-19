@@ -26,8 +26,8 @@ app = FastAPI()
 
 def make_message(pred: int):
     if pred == 1:
-        return "⚠️ High UV expected soon. Apply sunscreen and avoid midday sun."
-    return "☀️ Low UV risk. Normal outdoor conditions."
+        return "🧴☀️ High UV expected soon. Apply sunscreen and avoid midday sun."
+    return "🌤️ Low UV risk. Normal outdoor conditions."
 
 
 @app.get("/predict")
