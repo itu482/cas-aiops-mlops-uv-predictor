@@ -209,6 +209,7 @@ The system depends on the Open-Meteo for all its data. This introduces rate limi
 tight service coupling, e.g., inference startup depends on training completion)
 * Deployment maturity (no staging/production separation, no model rollback or canary deployments)
 * Strong monitoring of model performance over time (no continuous evaluation or alerting)
+* Automated testing (unit, integration, and end-to-end tests for pipelines, feature engineering, and inference APIs)
 
 ## 8. What is missing for production-grade ML
 
