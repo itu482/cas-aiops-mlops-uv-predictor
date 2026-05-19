@@ -211,6 +211,7 @@ tight service coupling, e.g., inference startup depends on training completion)
 * CI/CD pipeline (no automated integration between code changes, testing, model validation, and deployment; all components are currently started and deployed manually via Docker Compose without release versioning or deployment gates) or continuous training
 * Strong monitoring of model performance over time (no continuous evaluation or alerting)
 * Automated testing (unit, integration, and end-to-end tests for pipelines, feature engineering, and inference APIs)
+* Limited end-to-end model lineage and reproducibility - while the Hopsworks Model Registry provides model versioning and metadata storage, the system does not enforce explicit linkage between a trained model and the exact training dataset snapshot, feature pipeline version, and training code commit, limiting full reproducibility and auditability
 
 ## 8. What is missing for production-grade ML
 
