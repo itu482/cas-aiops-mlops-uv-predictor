@@ -208,6 +208,7 @@ The system depends on the Open-Meteo for all its data. This introduces rate limi
 * Scalable infrastructure (no single-instance assumption, no Redis/external cache, no orchestration like Kubernetes, 
 tight service coupling, e.g., inference startup depends on training completion)
 * Deployment maturity (no staging/production separation, no model rollback or canary deployments)
+* CI/CD pipeline (no automated integration between code changes, testing, model validation, and deployment; all components are currently started and deployed manually via Docker Compose without release versioning or deployment gates) or continuous training
 * Strong monitoring of model performance over time (no continuous evaluation or alerting)
 * Automated testing (unit, integration, and end-to-end tests for pipelines, feature engineering, and inference APIs)
 
