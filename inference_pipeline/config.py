@@ -1,0 +1,7 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+HOPSWORKS_MODEL_NAME=os.getenv("HOPSWORKS_MODEL_NAME")
+HOPSWORKS_REALTIME_FEATURE_GROUP_NAME= os.getenv("HOPSWORKS_REALTIME_FEATURE_GROUP_NAME")

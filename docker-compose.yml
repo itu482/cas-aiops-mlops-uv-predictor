@@ -1,0 +1,24 @@
+services:
+
+  features:
+    build:
+      context: .
+      dockerfile: feature_pipeline/Dockerfile
+    env_file: .env
+
+  train:
+    build:
+      context: .
+      dockerfile: training_pipeline/Dockerfile
+    env_file: .env
+
+  inference:
+    build:
+      context: .
+      dockerfile: inference_pipeline/Dockerfile
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      train:
+        condition: service_completed_successfully

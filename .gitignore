@@ -1,0 +1,5 @@
+.env
+common/__pycache__
+feature_pipeline/__pycache__
+feature_pipeline/_data
+training_pipeline/__pycache__
